@@ -1,27 +1,33 @@
-import { Inter } from "next/font/google";
-import { authControllerGetSessionInfo } from "@/shared/api/generated";
+import { UiHeader } from "@/shared/ui/ui-header";
 import { useQuery } from "@tanstack/react-query";
-import { UiButton } from "@/shared/ui/ui-button";
-import { UiTextField } from '@/shared/ui/ui-text-field';
-
-const inter = Inter({ subsets: ["latin"] });
+import { authControllerGetSessionInfo } from "@/shared/api/generated";
+import { SignOutButton } from "@/features/auth";
 
 export function HomePage() {
-  // const { data } = useQuery({
-  //   queryKey: ["session"],
-  //   queryFn: () => authControllerGetSessionInfo(),
-  // });
+  const { data } = useQuery({
+    queryKey: ["session"],
+    queryFn: () => authControllerGetSessionInfo(),
+  });
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <UiButton variant="primary">primary</UiButton>
-      <UiButton variant="secondary">secondary</UiButton>
-      <UiButton variant="outlined">outlined</UiButton>
-      <UiButton disabled variant="primary">
-        primary disabled
-      </UiButton>
-      <UiTextField/>
-    </main>
+    <div className={`min-h-screen flex flex-col`}>
+      <UiHeader
+        right={
+          <div>
+            {data?.email}
+            <SignOutButton />
+          </div>
+        }
+      />
+      {/*<div className="grid grid-cols-[200px_1fr]">*/}
+      {/*  <aside className="px-5 pt-10">*/}
+      {/*    <ToggleBlockingButton />*/}
+      {/*  </aside>*/}
+      {/*  <main className="pt-10 px-5">*/}
+      {/*    <h1 className="text-2xl mb-8">Block list</h1>*/}
+      {/*    <AddBlockItemForm />*/}
+      {/*    <BlockList className="mt-3" />*/}
+      {/*  </main>*/}
+      {/*</div>*/}
+    </div>
   );
 }
