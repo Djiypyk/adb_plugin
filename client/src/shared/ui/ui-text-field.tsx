@@ -1,6 +1,4 @@
 import clsx from "clsx";
-import { Simulate } from "react-dom/test-utils";
-import input = Simulate.input;
 import { InputHTMLAttributes, PropsWithRef, useId } from "react";
 
 export type UiTextFieldProps = {

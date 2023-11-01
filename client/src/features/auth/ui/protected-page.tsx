@@ -1,6 +1,4 @@
 import { PropsWithChildren, ReactElement } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { authControllerGetSessionInfo } from "@/shared/api/generated";
 import { UiPageSpinner } from "@/shared/ui/ui-page-spinner";
 import { useRouter } from "next/router";
 import { ROUTES } from "@/shared/constants/ROUTES";
