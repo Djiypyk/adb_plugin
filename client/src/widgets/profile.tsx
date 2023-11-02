@@ -1,8 +1,8 @@
 import { SignOutButton } from "@/features/auth";
-import { useSession } from "@/entities/session/queries";
+import { useSessionQuery } from "@/entities/session";
 
 export function Profile() {
-  const { data: session } = useSession();
+  const { data: session } = useSessionQuery();
   if (!session) return null;
   return (
     <div className='flex gap-2 items-center'>

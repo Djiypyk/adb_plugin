@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
-import { createOperatorSubscriber } from 'rxjs/internal/operators/OperatorSubscriber';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
@@ -15,6 +14,14 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.use(cookieParser());
+  app.enableCors({
+    origin: [
+      'http://localhost:3001',
+      'http://localhost:5173',
+      'chrome-extension://dnobpkjcohohgolmlnhmbmciblhokimk',
+    ],
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);
 }

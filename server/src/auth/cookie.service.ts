@@ -6,7 +6,12 @@ export class CookieService {
   static tokenKey = 'access-token';
 
   setToken(res: Response, token: string) {
-    res.cookie(CookieService.tokenKey, token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.cookie(CookieService.tokenKey, token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'none',
+      secure: true,
+    });
   }
 
   removeToken(res: Response) {
