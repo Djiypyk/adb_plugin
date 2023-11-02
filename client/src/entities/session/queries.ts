@@ -3,7 +3,7 @@ import { authControllerGetSessionInfo } from "@/shared/api/generated";
 
 const sessionKey = ["session"];
 
-export function useSession() {
+export function useSessionQuery() {
   return useQuery({
     queryKey: sessionKey,
     queryFn: authControllerGetSessionInfo,
